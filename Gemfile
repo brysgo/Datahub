@@ -32,6 +32,12 @@ gem 'devise', '>= 3.0.0.rc'
 
 group :test,:development do
   gem 'rspec-rails'
+  gem 'pry-rails'
+end
+
+group :test do
+  gem 'zeus'
+  gem 'database_cleaner'
 end
 
 group :doc do
