@@ -124,10 +124,10 @@ describe ProjectsController do
           assigns(:project).should eq(project)
         end
 
-        it "redirects to the project" do
+        it "stays on the edit page" do
           project = Project.create! valid_attributes
           put :update, {:id => project.to_param, :project => valid_attributes}, valid_session
-          response.should redirect_to(project)
+          response.response_code.should == 200
         end
       end
 
