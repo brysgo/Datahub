@@ -20,6 +20,10 @@ module Datahub
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    # Tells devise not to break heroku
+    config.assets.initialize_on_precompile = false
+
+    # Tells rails g to use sass instead of scss
     config.sass.preferred_syntax = :sass
   end
 end

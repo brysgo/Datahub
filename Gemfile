@@ -28,6 +28,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 gem 'slim-rails'
+gem 'devise', '>= 3.0.0.rc'
 
 group :test,:development do
   gem 'rspec-rails'
