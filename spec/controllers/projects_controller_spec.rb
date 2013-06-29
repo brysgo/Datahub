@@ -157,12 +157,6 @@ describe ProjectsController do
           delete :destroy, {:id => project.to_param}, valid_session
         }.to change(Project, :count).by(-1)
       end
-
-      it "redirects to the projects list" do
-        project = Project.create! valid_attributes
-        delete :destroy, {:id => project.to_param}, valid_session
-        response.should redirect_to(projects_url)
-      end
     end
   end
 end
