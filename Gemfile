@@ -36,6 +36,8 @@ end
 group :test do
   gem 'zeus'
   gem 'database_cleaner'
+  gem 'capybara-webkit'
+  gem 'capybara'
 end
 
 group :doc do
