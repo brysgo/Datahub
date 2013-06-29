@@ -10,6 +10,9 @@
     = f.label :title
     = f.text_field :title
   .field
+    = f.label :dependency_ids
+    = f.select :dependency_ids, Project.all.map { |p| [ p.title, p.id] },{}, {multiple: true}
+  .field
     = f.label :logic_code
     = f.text_area :logic_code
   .field
