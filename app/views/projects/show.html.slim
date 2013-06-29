@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Title:
+  = @project.title
+p
+  strong Logic code:
+  = @project.logic_code
+p
+  strong Display code:
+  = @project.display_code
+
+= link_to 'Edit', edit_project_path(@project)
+'|
+= link_to 'Back', projects_path
