@@ -27,6 +27,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'slim-rails'
 gem 'devise', '>= 3.0.0.rc'
 gem 'pg'
+gem 'codemirror-rails'
 
 group :test,:development do
   gem 'rspec-rails'
