@@ -31,15 +31,37 @@ describe "Project" do
               @emit(acc)
             else
               return acc
+        """,
+        display_code: """
+          <script>
+            $(document).ready( function() {
+              $('.data-box').html(JSON.stringify(datahub));
+            })
+          </script>
+          <div class='data-box'>
+            No content found!!
+          </div>
         """
       )
     end
-    it "runs the code every time a dependency is fulfilled" do
+    let(:expected_results) { { "#{dep1.id}" => 'hello', "#{dep2.id}" => 'world' } }
+
+    it "runs the logic code every time a dependency is fulfilled" do
       dep2.should_receive(:dependents).and_return([example_project])
-      expected_results = { "#{dep1.id}" => 'hello', "#{dep2.id}" => 'world' }
       example_project.should_receive(:emit).with(expected_results).and_call_original
       dep1.emit('hello')
       dep2.emit('world')
+    end
+
+    describe "show page", js:true do
+      it "renders the display code on the page" do
+        example_project.saved_state = { this: "is", the: "saved", state: "!" }
+        example_project.save!
+        visit project_path(example_project)
+        page.should have_content(example_project.saved_state.to_json)
+        page.should_not have_content('<div>')
+        page.evaluate_script("datahub").should_not be_nil
+      end
     end
   end
 

@@ -9,7 +9,15 @@ p
     = @project.logic_code
 p
   strong Display code:
-  = @project.display_code
+  textarea.codemirror-readonly
+    = @project.display_code
+p
+  strong Results:
+  javascript:
+    datahub = {
+      state: #{@project.saved_state.to_json.html_safe}
+    }
+  = @project.display_code.try(:html_safe)
 
 = link_to 'Edit', edit_project_path(@project)
 '|
