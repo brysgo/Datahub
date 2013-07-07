@@ -5,7 +5,8 @@ p
   = @project.title
 p
   strong Logic code:
-  = @project.logic_code
+  textarea.codemirror-readonly
+    = @project.logic_code
 p
   strong Display code:
   = @project.display_code

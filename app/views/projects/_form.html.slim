@@ -14,8 +14,8 @@
     = f.select :dependency_ids, Project.all.map { |p| [ p.title, p.id ] unless p == @project },{}, {multiple: true}
   .field
     = f.label :logic_code
-    = f.text_area :logic_code
+    = f.text_area :logic_code, class: 'codemirror-edit'
   .field
     = f.label :display_code
-    = f.text_area :display_code
+    = f.text_area :display_code, class: 'codemirror-edit'
   .actions = f.submit 'Save'

@@ -10,7 +10,14 @@ $(document).on('ready page:change', ->
     showCursorWhenSelecting: true
     theme: "solarized dark"
 
+  readOnlySettings =
+    readOnly: 'nocursor'
+  _.extend(readOnlySettings, codeMirrorSettings)
+
   CodeMirror.commands.save = -> $('form').submit()
-  CodeMirror.fromTextArea($('#project_logic_code')[0], codeMirrorSettings)
-  CodeMirror.fromTextArea($('#project_display_code')[0], codeMirrorSettings)
+  for textarea in $('.codemirror-edit')
+    CodeMirror.fromTextArea(textarea, codeMirrorSettings)
+  for textarea in $('.codemirror-readonly')
+    CodeMirror.fromTextArea(textarea, readOnlySettings)
+
 )
