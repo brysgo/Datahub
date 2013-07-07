@@ -19,4 +19,5 @@
 #= require codemirror/modes/coffeescript
 #= require codemirror/addons/search/searchcursor
 #= require codemirror/addons/dialog/dialog
+#= require underscore
 
