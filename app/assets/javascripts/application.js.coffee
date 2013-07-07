@@ -17,6 +17,10 @@
 #= require codemirror
 #= require codemirror/keymaps/vim
 #= require codemirror/modes/coffeescript
+#= require codemirror/modes/xml
+#= require codemirror/modes/javascript
+#= require codemirror/modes/css
+#= require codemirror/modes/htmlmixed
 #= require codemirror/addons/search/searchcursor
 #= require codemirror/addons/dialog/dialog
 #= require underscore

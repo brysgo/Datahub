@@ -15,9 +15,12 @@ $(document).on('ready page:change', ->
   _.extend(readOnlySettings, codeMirrorSettings)
 
   CodeMirror.commands.save = -> $('form').submit()
-  for textarea in $('.codemirror-edit')
-    CodeMirror.fromTextArea(textarea, codeMirrorSettings)
-  for textarea in $('.codemirror-readonly')
-    CodeMirror.fromTextArea(textarea, readOnlySettings)
+  for textarea in $('.codemirror')
+    settings = _.clone(codeMirrorSettings)
+    settings.readOnly = 'nocursor' if $(textarea).hasClass('readonly')
+    settings.mode = "text/x-coffeescript" if $(textarea).hasClass('coffeescript')
+    settings.mode = "text/html" if $(textarea).hasClass('html')
+    _.extend(readOnlySettings, codeMirrorSettings)
+    CodeMirror.fromTextArea(textarea, settings)
 
 )
