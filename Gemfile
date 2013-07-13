@@ -29,6 +29,7 @@ gem 'slim-rails'
 gem 'devise', '>= 3.0.0.rc'
 gem 'pg'
 gem 'codemirror-rails'
+gem 'acts_as_singleton'
 
 group :test,:development do
   gem 'rspec-rails'

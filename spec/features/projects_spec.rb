@@ -106,16 +106,4 @@ describe "Project" do
     end
   end
 
-  def create_logged_in_user
-    user = User.create!(
-      email: 'user@example.com',
-      password: 'password'
-    )
-    login(user)
-    user
-  end
-
-  def login(user)
-    login_as user, scope: :user
-  end
 end

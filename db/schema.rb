@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20130715003208) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "saved_state"
+    t.string   "type"
     t.text     "failure"
   end
 
