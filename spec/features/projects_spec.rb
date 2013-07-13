@@ -1,9 +1,10 @@
 require 'spec_helper'
+include RequestHelpers
 
 describe "Project" do
   describe "new project" do
     before do
-      Project.create!(title: "Twitter")
+      Project.create!(title: "Another project")
     end
     it "has another project's as a dependency" do
       create_logged_in_user
@@ -11,9 +12,12 @@ describe "Project" do
       visit new_project_path
 
       fill_in "Title", with: "My project"
-      select "Twitter", from: "Dependency ids"
+      select "Another project", from: "Dependency ids"
 
       click_on "Save"
+      click_on "Edit"
+
+      page.should have_select("Dependency ids", selected: "Another project")
     end
   end
 

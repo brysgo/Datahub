@@ -114,8 +114,8 @@ describe ProjectsController do
           # specifies that the Project created on the previous line
           # receives the :update_attributes message with whatever params are
           # submitted in the request.
-          Project.any_instance.should_receive(:update).with({ "title" => "MyString" })
-          put :update, {:id => project.to_param, :project => { "title" => "MyString" }}, valid_session
+          Project.any_instance.should_receive(:update).with({ "title" => "MyString", "dependency_ids" => ["2"] })
+          put :update, {:id => project.to_param, :project => { "title" => "MyString", "dependency_ids" => ["2"] }}, valid_session
         end
 
         it "assigns the requested project as @project" do
