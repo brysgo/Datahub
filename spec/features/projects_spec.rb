@@ -57,6 +57,43 @@ describe "Project" do
       dep2.emit('world')
     end
 
+    describe "an error in the project code" do
+      it "prevents the code from being run again" do
+        dep1.should_receive(:dependents).and_return([example_project])
+        dep2.should_receive(:dependents).and_return([example_project])
+
+        # Throw our exception
+        example_project.logic_code = "throw 'Not cool execption!'"
+        dep1.emit('hello')
+
+        # Try sending new data to our project
+        example_project.logic_code = " (dep, data, acc={}) -> @emit('yo dawg')"
+        example_project.should_not_receive(:emit)
+        dep2.emit('world')
+      end
+
+      it "resets the failure when the logic code changes" do
+        dep1.should_receive(:dependents).and_return([example_project])
+        dep2.should_receive(:dependents).and_return([example_project])
+
+        # Throw our exception
+        example_project.logic_code = "throw 'Not cool execption!'"
+        dep1.emit('hello')
+
+        # Change our code
+        create_logged_in_user
+        visit edit_project_path(example_project)
+        fill_in "Logic code", with: "Some logic yo"
+        click_on "Save"
+
+        # See that it gets run
+        example_project.reload
+        example_project.logic_code = " (dep, data, acc={}) -> @emit('yo dawg')"
+        example_project.should_receive(:emit)
+        dep2.emit('world')
+      end
+    end
+
     describe "show page", js:true do
       it "renders the display code on the page" do
         example_project.saved_state = { this: "is", the: "saved", state: "!" }
