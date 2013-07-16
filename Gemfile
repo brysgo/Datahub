@@ -30,6 +30,7 @@ gem 'devise', '>= 3.0.0.rc'
 gem 'pg'
 gem 'codemirror-rails'
 gem 'acts_as_singleton'
+gem 'em-twitter'
 
 group :test,:development do
   gem 'rspec-rails'
@@ -41,6 +42,7 @@ group :test do
   gem 'database_cleaner'
   gem 'capybara-webkit'
   gem 'capybara'
+  gem 'launchy'
 end
 
 group :doc do
