@@ -5,6 +5,7 @@ describe "Twitter API" do
   before do
     Twitter.instance.save!
   end
+
   it "allows the user to add twitter as a dependency" do
     create_logged_in_user
 
@@ -17,5 +18,35 @@ describe "Twitter API" do
 
     Twitter.instance.dependents.count.should == 1
   end
-  it "calls dependent projects when new tweets come in"
+
+  describe "dependent projects" do
+    let!(:example_project) do
+      Project.create!(
+        title: "Example Project",
+        dependencies: [Twitter.instance],
+        logic_code: """
+          (dep, data, acc={}) ->
+            return data
+        """,
+        display_code: """
+          <script>
+            $(document).ready( function() {
+              $('.data-box').html(JSON.stringify(datahub.state));
+            })
+          </script>
+          <div class='data-box'>
+            No content found!!
+          </div>
+        """
+      )
+    end
+
+    it "calls them when new tweets come in", js:true do
+      visit project_path(example_project)
+      page.should have_content('null')
+      Twitter.instance.incoming(Twitter.instance.id, "Strawberry Fields Forever")
+      visit project_path(example_project)
+      page.should have_content('Strawberry Fields')
+    end
+  end
 end
