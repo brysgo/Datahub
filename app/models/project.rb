@@ -35,7 +35,9 @@ class Project < ActiveRecord::Base
         saved: undefined
       @emit = (data) -> results.emitted.push(data)
       @run = (args...) ->
-        results.saved = (#{self.logic_code.lstrip})(args...)
+        results.saved = (
+#{self.logic_code.indent(10)}
+        )(args...)
         return results
       COFFEESCRIPT
       # run javascript code
