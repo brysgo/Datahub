@@ -26,7 +26,7 @@ class Project < ActiveRecord::Base
   end
 
   def incoming(dep, data)
-    return if self.failure.is_a? Exception
+    return if self.reload.failure.is_a? Exception
     begin
       # compile the coffeescript
       context = ExecJS.compile(CoffeeScript.compile(<<-COFFEESCRIPT))

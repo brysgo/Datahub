@@ -64,9 +64,11 @@ describe "Project" do
 
         # Throw our exception
         example_project.logic_code = "throw 'Not cool execption!'"
+        example_project.save!
         dep1.emit('hello')
 
         # Try sending new data to our project
+        example_project.reload
         example_project.logic_code = " (dep, data, acc={}) -> @emit('yo dawg')"
         example_project.should_not_receive(:emit)
         dep2.emit('world')
@@ -78,17 +80,16 @@ describe "Project" do
 
         # Throw our exception
         example_project.logic_code = "throw 'Not cool execption!'"
+        example_project.save!
         dep1.emit('hello')
 
         # Change our code
         create_logged_in_user
         visit edit_project_path(example_project)
-        fill_in "Logic code", with: "Some logic yo"
+        fill_in "Logic code", with: "(dep, data, acc={}) -> @emit('yo dawg')"
         click_on "Save"
 
         # See that it gets run
-        example_project.reload
-        example_project.logic_code = " (dep, data, acc={}) -> @emit('yo dawg')"
         example_project.should_receive(:emit)
         dep2.emit('world')
       end
