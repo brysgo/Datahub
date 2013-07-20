@@ -29,6 +29,7 @@ describe "Twitter API" do
             return data
         """,
         display_code: """
+          <script src='http://code.jquery.com/jquery-2.0.3.min.js'></script>
           <script>
             $(document).ready( function() {
               $('.data-box').html(JSON.stringify(datahub.state));
@@ -42,10 +43,10 @@ describe "Twitter API" do
     end
 
     it "calls them when new tweets come in", js:true do
-      visit project_path(example_project)
+      visit project_result_path(example_project)
       page.should have_content('null')
       Twitter.instance.incoming(Twitter.instance.id, "Strawberry Fields Forever")
-      visit project_path(example_project)
+      visit project_result_path(example_project)
       page.should have_content('Strawberry Fields')
     end
   end

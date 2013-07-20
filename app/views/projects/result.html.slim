@@ -1,0 +1,6 @@
+javascript:
+  datahub = {
+    state: #{@project.saved_state.to_json.html_safe},
+    failure: '#{@project.failure.try(:message)}'
+  }
+= @project.display_code.try(:html_safe)

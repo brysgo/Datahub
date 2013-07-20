@@ -37,6 +37,7 @@ describe "Project" do
               return acc
         """,
         display_code: """
+          <script src='http://code.jquery.com/jquery-2.0.3.min.js'></script>
           <script>
             $(document).ready( function() {
               $('.data-box').html(JSON.stringify(datahub));
@@ -99,7 +100,7 @@ describe "Project" do
       it "renders the display code on the page" do
         example_project.saved_state = { this: "is", the: "saved", state: "!" }
         example_project.save!
-        visit project_path(example_project)
+        visit project_result_path(example_project)
         page.should have_content(example_project.saved_state.to_json)
         page.should_not have_content('<div>')
         page.evaluate_script("datahub").should_not be_nil

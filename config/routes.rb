@@ -2,6 +2,7 @@ Datahub::Application.routes.draw do
   devise_for :users
   resources :users
 
+  get 'projects/:id/result' => 'projects#result', as: :project_result
   resources :projects, as: 'twitter'
   resources :projects
 
