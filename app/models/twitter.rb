@@ -19,7 +19,7 @@ class Twitter < Project
   end
 
   def incoming(dep, data)
-    self.emit(data)
+    self.emit(JSON.parse(data))
   end
 
   def start_connection
