@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Info windows</title>
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map-canvas { height: 100% }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDYvwQg1cKLLLVJ6kUyLsUmOk-bUhy3vE&sensor=false&libraries=visualization"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/coffee-script/1.6.3/coffee-script.min.js"></script>
+
+    <script type="text/coffeescript">
+      initialize = ->
+        myLatlng = new google.maps.LatLng(37.774546, -122.433523)
+        mapOptions =
+          zoom: 1
+          center: myLatlng
+          mapTypeId: google.maps.MapTypeId.SATELLITE
+
+        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions)
+
+        tweetData = (new google.maps.LatLng(row[1], row[0]) for row in datahub.state)
+
+        pointArray = new google.maps.MVCArray(tweetData)
+        heatmap = new google.maps.visualization.HeatmapLayer({
+          data: pointArray
+        })
+
+        heatmap.setMap(map)
+
+
+      google.maps.event.addDomListener(window, 'load', initialize)
+
+    </script>
+  </head>
+  <body>
+    <div id="map-canvas"></div>
+  </body>
+</html>
+
