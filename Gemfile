@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.2.0'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -16,32 +16,32 @@ gem 'coffee-rails', '~> 4.0.0'
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '>= 3.0.1'
 gem 'underscore-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+gem 'turbolinks', '>= 1.2.0'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
-gem 'slim-rails'
-gem 'devise', '>= 3.0.0.rc'
+gem 'slim-rails', '>= 3.0.1'
+gem 'devise', '>= 3.0.0'
 gem 'pg'
-gem 'codemirror-rails'
+gem 'codemirror-rails', '>= 3.13'
 gem 'acts_as_singleton'
 gem 'em-twitter'
 
 group :test,:development do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '>= 2.13.2'
   gem 'pry-rails'
 end
 
 group :test do
   gem 'zeus'
   gem 'database_cleaner'
-  gem 'capybara-webkit'
-  gem 'capybara'
+  gem 'capybara-webkit', '>= 1.0.0'
+  gem 'capybara', '>= 2.1.0'
   gem 'launchy'
 end
 
