@@ -16,24 +16,24 @@ gem 'coffee-rails', '~> 4.0.0'
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '>= 3.0.1'
 gem 'underscore-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+gem 'turbolinks', '>= 1.2.0'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder', '~> 1.4', '>= 1.4.2'
 
-gem 'slim-rails'
-gem 'devise', '>= 3.0.0.rc'
+gem 'slim-rails', '>= 2.0.1'
+gem 'devise', '>= 3.0.0'
 gem 'pg'
-gem 'codemirror-rails'
-gem 'acts_as_singleton'
+gem 'codemirror-rails', '>= 3.13'
+gem 'acts_as_singleton', '>= 0.0.8'
 gem 'em-twitter'
 
 group :test,:development do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '>= 2.13.2'
   gem 'pry-rails'
 end
 
