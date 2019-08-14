@@ -40,8 +40,8 @@ end
 group :test do
   gem 'zeus'
   gem 'database_cleaner'
-  gem 'capybara-webkit'
-  gem 'capybara'
+  gem 'capybara-webkit', '>= 1.0.0'
+  gem 'capybara', '>= 2.1.0'
   gem 'launchy'
 end
 
